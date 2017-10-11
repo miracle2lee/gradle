@@ -189,6 +189,7 @@ class CppLibraryPublishingIntegrationTest extends AbstractNativePublishingIntegr
 
         when:
         def consumer = file("consumer").createDir()
+        consumer.file('settings.gradle') << ''
         consumer.file("build.gradle") << """
             apply plugin: 'cpp-executable'
             repositories { maven { url '${repoDir.toURI()}' } }
@@ -271,6 +272,7 @@ class CppLibraryPublishingIntegrationTest extends AbstractNativePublishingIntegr
 
         when:
         def consumer = file("consumer").createDir()
+        consumer.file('settings.gradle') << ''
         consumer.file("build.gradle") << """
             apply plugin: 'cpp-executable'
             repositories { maven { url '${repoDir.toURI()}' } }

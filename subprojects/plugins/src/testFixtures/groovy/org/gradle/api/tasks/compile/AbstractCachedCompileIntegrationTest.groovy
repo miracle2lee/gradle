@@ -49,7 +49,7 @@ abstract class AbstractCachedCompileIntegrationTest extends AbstractIntegrationS
         setupProjectInDirectory(remoteProjectDir)
 
         when:
-        executer.inDirectory(remoteProjectDir)
+        executer.inDirectory(remoteProjectDir).expectDeprecationWarning()
         withBuildCache().succeeds compilationTask
         then:
         compileIsNotCached()
@@ -78,7 +78,7 @@ abstract class AbstractCachedCompileIntegrationTest extends AbstractIntegrationS
     def populateCache() {
         def remoteProjectDir = file("remote-project")
         setupProjectInDirectory(remoteProjectDir)
-        executer.inDirectory(remoteProjectDir)
+        executer.inDirectory(remoteProjectDir).expectDeprecationWarning()
         withBuildCache().succeeds compilationTask
         compileIsNotCached()
         // Remove the project completely
